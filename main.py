@@ -98,10 +98,7 @@ def create_dict(docs):
         for word in words[i] :
             dictionary[ (word, doc) ] += 1
 
-    return dictionary
-
-def show_dict(dict):
-    
+    return dictionary    
 
 if choose == "Home" :
     st.title( "Reconnaissance des mots arabes manuscrits pris de la base de données IFN/ENIT" )
