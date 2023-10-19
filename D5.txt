@@ -1,4 +1,0 @@
-Chapter 5, Topic Modeling, introduces topic modeling, an unsupervised natural
-language processing technique that groups documents according to topic. You will
-see how this is done using Latent Dirichlet Allocation (LDA), Latent Semantic Analysis
-(LSA), and Hierarchical Dirichlet Processes (HDP).
