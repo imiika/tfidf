@@ -51,8 +51,10 @@ if choose == "Home" :
 
 elif choose == "Dictionaries" :
     docs = read_data()
-    st.write(docs[0])
-        
-    docs = clean_preprocess(docs)
-    st.write('then')
-    st.write(docs[0])
+    preprocessed_docs = clean_preprocess(docs)
+
+    for i in range( len(docs) ) :
+        st.write( "#Original text :" )
+        st.write( docs[i] )
+        st.write( "#Text after cleaning and preprocessing : lower case, stopwords and non-words removal, stemming :" )
+        st.write( preprocessed_docs[i] )
