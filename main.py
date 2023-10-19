@@ -7,9 +7,9 @@ import nltk #natural language toolkit
 from nltk import word_tokenize, download, stem #preprocessing
 from nltk.corpus import stopwords, words #remove stopwords
 
-nltk.download('punkt')
-nltk.download('stopwords')
-nltk.download('words')
+#nltk.download('punkt')
+#nltk.download('stopwords')
+#nltk.download('words')
 
 with st.sidebar :
     choose = option_menu("Menu", ["Home", "Dictionaries", "TF-IDF", "Contact", "Help"],
@@ -52,4 +52,9 @@ if choose == "Home" :
 
 elif choose == "Dictionaries" :
     docs = read_data()
+    for d in docs :
+        write( d )
     docs = clean_preprocess(docs)
+    write('then')
+    for d in docs :
+        write( d )
