@@ -53,8 +53,8 @@ if choose == "Home" :
 elif choose == "Dictionaries" :
     docs = read_data()
     for d in docs :
-        write( d )
+        st.write( d )
     docs = clean_preprocess(docs)
     write('then')
     for d in docs :
-        write( d )
+        st.write( d )
