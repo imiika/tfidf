@@ -23,7 +23,7 @@ with st.sidebar :
     }
     )
 
-def read_data :
+def read_data():
     doc_names = os.listdir( 'Documents/' )
     docs = []
     for doc in doc_names :
@@ -33,3 +33,9 @@ def read_data :
     # Print data :
     for doc in docs :
         print(doc, '\n')
+
+if choose == "Home" :
+    st.title( "Reconnaissance des mots arabes manuscrits pris de la base de données IFN/ENIT" )
+
+elif choose == "Dictionaries" :
+    read_data()
