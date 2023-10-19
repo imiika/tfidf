@@ -71,7 +71,7 @@ def show_dicts1(dict):
         #st.write( "{:<10} {:<10}".format( key, value ) )
 
 def show_dicts(dict):
-    dict_df = pd.DataFrame( dict, columns = [ 'Word', 'Frequency' ] )
+    dict_df = pd.DataFrame( dict, index = [key for key, _ in dicts[0].items()], columns = [ 'Word', 'Frequency' ] )
     st.dataframe( dict_df )
 
 if choose == "Home" :
