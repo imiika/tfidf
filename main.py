@@ -5,7 +5,7 @@ import os
 from streamlit_option_menu import option_menu
 import string # for removing punctuation
 import nltk #natural language toolkit
-from nltk import word_tokenize, download, stem #preprocessing
+from nltk import word_tokenize, download, stem, RegexpTokenizer #preprocessing
 from nltk.corpus import stopwords, words #remove stopwords
 import itertools
 
@@ -39,11 +39,13 @@ def clean_preprocess(docs):
     for i in range( len(docs) ) :
         doc = docs[i].lower() # cleaning : lower case
         
-        tokens = word_tokenize( doc ) # preprocessing : tokenization
+        ExpReg = RegexpTokenizer('(?:[A-Z]\.)+|\d+(?:\.\d+)?DA?|\w+|\.{3}') 
+        tokens = ExpReg.tokenize( docs[i] ) # preprocessing : tokenization
+        
         stop_words = nltk.corpus.stopwords.words( 'english' ) # preprocessing : stop words
         doc = ' '.join( [token for token in tokens if token not in stop_words] ) # preprocessing : stop words removal
 
-        tokens = word_tokenize( doc ) # preprocessing : tokenization
+        tokens = ExpReg.tokenize( docs[i] ) # preprocessing : tokenization
         doc = ' '.join( [stemmer.stem(token) for token in tokens] ) # preprocessing : stemming
         preprocessed_docs.append( doc )
     return preprocessed_docs
