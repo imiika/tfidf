@@ -7,6 +7,7 @@ import string # for removing punctuation
 import nltk #natural language toolkit
 from nltk import word_tokenize, download, stem #preprocessing
 from nltk.corpus import stopwords, words #remove stopwords
+import itertools
 
 nltk.download('punkt')
 nltk.download('stopwords')
