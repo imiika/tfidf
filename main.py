@@ -31,7 +31,7 @@ def read_data():
     docs = []
     for doc in doc_names :
         with open( 'Documents/'+doc, 'r' ) as file :
-            docs.append( file.read() )
+            docs.append( ' '.join( file.read().split() ) )
     return docs
 
 def clean_preprocess(docs):
@@ -39,7 +39,7 @@ def clean_preprocess(docs):
     preprocessed_docs = []
     for i in range( len(docs) ) :
         doc = docs[i].lower() # cleaning : lower case
-        doc = ' '.join( doc.split() ) # cleaning: remove non words
+        #doc = ' '.join( doc.split() ) # cleaning: remove non words
         
         tokens = word_tokenize( doc ) # preprocessing : tokenization
         stop_words = nltk.corpus.stopwords.words( 'english' ) # preprocessing : stop words
