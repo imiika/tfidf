@@ -46,7 +46,7 @@ def clean_preprocess(docs):
         tokens = word_tokenize( doc ) # preprocessing : tokenization
         doc = ' '.join( [stemmer.stem(token) for token in tokens] ) # preprocessing : stemming
         preprocessed_docs.append( doc )
-        return preprocessed_docs
+    return preprocessed_docs
 
 if choose == "Home" :
     st.title( "Reconnaissance des mots arabes manuscrits pris de la base de données IFN/ENIT" )
