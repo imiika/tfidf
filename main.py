@@ -112,7 +112,7 @@ def show_dict( dict ):
     docs = [key[1] for key, _ in dict.items()]
     freq = [value for _, value in dict.items()]
 
-    dict_df = pd.DataFrame( {'Words':words, 'Documents':docs, 'Frequencies':value } )
+    dict_df = pd.DataFrame( {'Words':words, 'Documents':docs, 'Frequencies':freq } )
     st.write( dict_df )
     
 if choose == "Home" :
