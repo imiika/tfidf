@@ -36,15 +36,12 @@ def clean_preprocess(docs):
     for i in range( len(docs) ) :
         docs[i] = docs[i].lower() # cleaning : lower case
         docs[i] = ' '.join( docs[i].split() ) # cleaning: remove non words
-        #print( docs[i], '\n' )
         
         tokens = word_tokenize( docs[i] ) # preprocessing : tokenization
         stop_words = nltk.corpus.stopwords.words( 'english' ) # preprocessing : stop words
         docs[i] = ' '.join( [token for token in tokens if token not in stop_words] ) # preprocessing : stop words removal
-        print( docs[i], '\n' )
         
         docs[i] = ' '.join( [stemmer.stem(token) for token in tokens] ) # preprocessing : stemming
-        print( docs[i], '\n' )
         return docs
 
 if choose == "Home" :
@@ -54,6 +51,7 @@ elif choose == "Dictionaries" :
     docs = read_data()
     for d in docs :
         st.write( d )
+        
     docs = clean_preprocess(docs)
     st.write('then')
     for d in docs :
