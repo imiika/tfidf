@@ -6,7 +6,7 @@ from streamlit_option_menu import option_menu
 
 with st.sidebar :
     choose = option_menu("Menu", ["Home", "Dictionaries", "TF-IDF", "Contact", "Help"],
-                         icons=['house', 'table-filled', 'table', 'stars','person lines fill'],
+                         icons=['house', 'table-fill', 'table', 'stars','person lines fill'],
                          menu_icon="menu-app",
                          styles={
         "container": {"padding": "5!important", "background-color": "#fafafa"},
