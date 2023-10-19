@@ -77,6 +77,32 @@ def show_dicts(dict):
     
     #st.markdown( dict_df.style.hide( axis="index" ).to_html(), unsafe_allow_html = True )
 
+def create_dict(docs):
+    words = []
+    distinct_words = []
+    
+    for i in range( len(docs) ) :
+        tokens = list( docs[i].split(" ") )
+        words.append( tokens )
+        distinct_words.extend( tokens )
+    
+    distinct_words = list( set( distinct_words ) )
+
+    doc_names = []
+    for i in range( len(docs) ) :
+        doc_names.append( "D"+str(i+1) )
+
+    dictionary = { key : 0 for key in list( itertools.product( distinct_words, doc_names ) ) }
+    for i in range( len(docs) ) :
+        doc = 'D'+str(i+1)
+        for word in words[i] :
+            dictionary[ (word, doc) ] += 1
+
+    return dictionary
+
+def show_dict(dict):
+    
+
 if choose == "Home" :
     st.title( "Reconnaissance des mots arabes manuscrits pris de la base de données IFN/ENIT" )
 
@@ -95,4 +121,15 @@ elif choose == "Dictionaries" :
         dicts = create_dicts( preprocessed_docs )
         st.write( "### Dictionary :" )
         show_dicts( dicts[i] )
-        
+
+elif choose == "TF-IDF" :
+    docs = read_data()
+    preprocessed_docs = clean_preprocess(docs)
+    
+    st.write( "## Original texts :" )
+    for i in range( len(docs) ) :
+        st.write( docs[i] )
+
+    st.write( "## Preprocessed texts :" )
+    for i in range( len(docs) ) :
+        st.write( preprocessed_docs[i] )
