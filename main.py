@@ -55,6 +55,6 @@ elif choose == "Dictionaries" :
     for d in docs :
         st.write( d )
     docs = clean_preprocess(docs)
-    write('then')
+    st.write('then')
     for d in docs :
         st.write( d )
