@@ -68,7 +68,7 @@ def show_dicts(dict):
     words = [key for key, _ in dict.items()]
     freq = [value for _, value in dict.items()]
 
-    dict_df = pd.DataFrame( {'Words':words, 'Frequencies':freq } )
+    dict_df = pd.DataFrame( {'Words':words, 'Occurrences':freq } )
     st.markdown( dict_df.style.hide( axis="index" ).to_html(), unsafe_allow_html = True )
 
 def create_dict(docs):
@@ -99,7 +99,7 @@ def show_dict( dict ):
     docs = [key[1] for key, _ in dict.items()]
     freq = [value for _, value in dict.items()]
 
-    dict_df = pd.DataFrame( {'Words':words, 'Documents':docs, 'Frequencies':freq } )
+    dict_df = pd.DataFrame( {'Words':words, 'Documents':docs, 'Occurrences':freq } )
     st.markdown( dict_df.style.hide( axis="index" ).to_html(), unsafe_allow_html = True )
     
 if choose == "Home" :
