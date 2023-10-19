@@ -27,7 +27,6 @@ with st.sidebar :
 
 def read_data():
     doc_names = ['D1.txt', 'D2.txt', 'D3.txt', 'D4.txt', 'D5.txt', 'D6.txt']
-    st.write( doc_names )
     docs = []
     for doc in doc_names :
         with open( 'Documents/'+doc, 'r' ) as file :
