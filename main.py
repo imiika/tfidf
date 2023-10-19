@@ -63,10 +63,11 @@ def create_dicts(docs):
     return dicts
 
 def show_dicts(dict):
-    st.write( "{:<10} {:<10}".format( 'Word', 'Frequency') )
+    st.dataframe(dict)
+    #st.write( "{:<10} {:<10}".format( 'Word', 'Frequency') )
 
-    for key, value in dict.items() :
-        st.write( "{:<10} {:<10}".format( key, value ) )
+    #for key, value in dict.items() :
+        #st.write( "{:<10} {:<10}".format( key, value ) )
 
 if choose == "Home" :
     st.title( "Reconnaissance des mots arabes manuscrits pris de la base de données IFN/ENIT" )
