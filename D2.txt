@@ -1,5 +1,0 @@
-Chapter 2, Feature Extraction Methods, covers basic feature extraction methods
-from unstructured text. These include tokenization, stemming, lemmatization, and
-stopword removal. We also discuss observations we might see from these extraction
-methods and introduce Zipf's Law. Finally, we discuss the Bag of Words model and
-Term Frequency-Inverse Document Frequency (TF-IDF).
