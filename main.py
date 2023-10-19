@@ -34,17 +34,19 @@ def read_data():
 
 def clean_preprocess(docs):
     stemmer = stem.PorterStemmer()
+    preprocessed_docs = []
     for i in range( len(docs) ) :
-        docs[i] = docs[i].lower() # cleaning : lower case
-        docs[i] = ' '.join( docs[i].split() ) # cleaning: remove non words
+        doc = docs[i].lower() # cleaning : lower case
+        doc = ' '.join( doc.split() ) # cleaning: remove non words
         
-        tokens = word_tokenize( docs[i] ) # preprocessing : tokenization
+        tokens = word_tokenize( doc ) # preprocessing : tokenization
         stop_words = nltk.corpus.stopwords.words( 'english' ) # preprocessing : stop words
-        docs[i] = ' '.join( [token for token in tokens if token not in stop_words] ) # preprocessing : stop words removal
+        doc = ' '.join( [token for token in tokens if token not in stop_words] ) # preprocessing : stop words removal
 
-        tokens = word_tokenize( docs[i] ) # preprocessing : tokenization
-        docs[i] = ' '.join( [stemmer.stem(token) for token in tokens] ) # preprocessing : stemming
-        return docs
+        tokens = word_tokenize( doc ) # preprocessing : tokenization
+        doc = ' '.join( [stemmer.stem(token) for token in tokens] ) # preprocessing : stemming
+        preprocessed_docs.append( doc )
+        return preprocessed_docs
 
 if choose == "Home" :
     st.title( "Reconnaissance des mots arabes manuscrits pris de la base de données IFN/ENIT" )
