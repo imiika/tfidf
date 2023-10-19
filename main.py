@@ -25,9 +25,7 @@ with st.sidebar :
 
 def read_data():
     doc_names = os.listdir( 'Documents/' )
-    st.write(doc_names)
     doc_names.reverse()
-    st.write(doc_names)
     docs = []
     for doc in doc_names :
         with open( 'Documents/'+doc, 'r' ) as file :
