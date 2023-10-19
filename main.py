@@ -113,7 +113,7 @@ def show_dict( dict ):
     freq = [value for _, value in dict.items()]
 
     dict_df = pd.DataFrame( {'Words':words, 'Documents':docs, 'Frequencies':freq } )
-    st.write( dict_df )
+    st.dataframe( dict_df )
     
 if choose == "Home" :
     st.title( "Reconnaissance des mots arabes manuscrits pris de la base de données IFN/ENIT" )
