@@ -1,8 +1,15 @@
 import streamlit as st
-import pandas as pd
 import numpy as np
 import os
 from streamlit_option_menu import option_menu
+import string # for removing punctuation
+import nltk #natural language toolkit
+from nltk import word_tokenize, download, stem #preprocessing
+from nltk.corpus import stopwords, words #remove stopwords
+
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('words')
 
 with st.sidebar :
     choose = option_menu("Menu", ["Home", "Dictionaries", "TF-IDF", "Contact", "Help"],
@@ -15,3 +22,14 @@ with st.sidebar :
         "nav-link-selected": {"background-color": "#02ab21"},
     }
     )
+
+def read_data :
+    doc_names = os.listdir( 'Documents/' )
+    docs = []
+    for doc in doc_names :
+        with open( 'Documents/'+doc, 'r' ) as file :
+            docs.append( file.read() )
+        
+    # Print data :
+    for doc in docs :
+        print(doc, '\n')
