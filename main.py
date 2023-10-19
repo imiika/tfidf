@@ -73,10 +73,10 @@ def show_dicts1(dict):
 
 def show_dicts(dict):
     dict_df = pd.DataFrame.from_dict( dict, orient = 'index', columns = ['Frequency'] )
-    dict_df.index.name = 'Word'
-    st.table( dict_df )
+    #dict_df.index.name = 'Word'
+    #st.table( dict_df )
     
-    #st.markdown( dict_df.style.hide( axis="index" ).to_html(), unsafe_allow_html = True )
+    st.markdown( dict_df.style.hide( axis="index" ).to_html(), unsafe_allow_html = True )
 
 def create_dict(docs):
     words = []
