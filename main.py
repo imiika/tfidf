@@ -62,14 +62,11 @@ def create_dicts(docs):
         dicts.append( dictionary )
     return dicts
 
-def show_dicts(dicts):
-    for i in range( len(dicts) ) :
-        print( "Dictionary of document", i+1, ":\n" )
-        print( "{:<10} {:<10}".format( 'Word', 'Frequency') )
-    
-        for key, value in dicts[i].items() :
-            print( "{:<10} {:<10}".format( key, value ) )
-        print( "\n" )
+def show_dicts(dict):
+    st.write( "{:<10} {:<10}".format( 'Word', 'Frequency') )
+
+    for key, value in dict.items() :
+        st.write( "{:<10} {:<10}".format( key, value ) )
 
 if choose == "Home" :
     st.title( "Reconnaissance des mots arabes manuscrits pris de la base de données IFN/ENIT" )
@@ -82,8 +79,12 @@ elif choose == "Dictionaries" :
         st.write( "# Text n", i+1 )
         st.write( "## Original text :" )
         st.write( docs[i] )
+        
         st.write( "## Text after cleaning and preprocessing : lower case, stopwords and non-words removal, stemming :" )
         st.write( preprocessed_docs[i] )
+
+        dicts = create_dicts( preprocessed_docs )
+        show_dicts( dicts[i] )
         st.write()
         st.write()
         st.write()
