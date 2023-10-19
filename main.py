@@ -39,7 +39,6 @@ def clean_preprocess(docs):
     preprocessed_docs = []
     for i in range( len(docs) ) :
         doc = docs[i].lower() # cleaning : lower case
-        #doc = ' '.join( doc.split() ) # cleaning: remove non words
         
         tokens = word_tokenize( doc ) # preprocessing : tokenization
         stop_words = nltk.corpus.stopwords.words( 'english' ) # preprocessing : stop words
@@ -112,7 +111,7 @@ elif choose == "Dictionary per document" :
     for i in range( len(docs) ) :
         st.write( "## Text n", i+1 )
         st.write( "### Original text :" )
-        st.write( "####", docs[i] )
+        st.write( "######", docs[i] )
         
         st.write( "### Text after cleaning and preprocessing : lower case, stopwords and non-words removal, stemming :" )
         st.write( preprocessed_docs[i] )
