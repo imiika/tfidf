@@ -71,8 +71,7 @@ def show_dicts1(dict):
         #st.write( "{:<10} {:<10}".format( key, value ) )
 
 def show_dicts(dict):
-    dict_df = pd.DataFrame( dict )
-    st.dataframe( data = dict_df )
+    st.dataframe( data = pd.DataFrame( dict ) )
     #st.markdown( dict_df.style.hide( axis="index" ).to_html(), unsafe_allow_html = True )
 
 if choose == "Home" :
