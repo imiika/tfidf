@@ -26,8 +26,6 @@ with st.sidebar :
     )
 
 def read_data():
-    #doc_names = os.listdir( 'Documents/' )
-    #doc_names.reverse()
     doc_names = ['D1.txt', 'D2.txt', 'D3.txt', 'D4.txt', 'D5.txt', 'D6.txt']
     st.write( doc_names )
     docs = []
