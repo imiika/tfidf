@@ -29,13 +29,27 @@ def read_data():
     for doc in doc_names :
         with open( 'Documents/'+doc, 'r' ) as file :
             docs.append( file.read() )
+    return docs
+
+def clean_preprocess(docs):
+    stemmer = stem.PorterStemmer()
+    for i in range( len(docs) ) :
+        docs[i] = docs[i].lower() # cleaning : lower case
+        docs[i] = ' '.join( docs[i].split() ) # cleaning: remove non words
+        #print( docs[i], '\n' )
         
-    # Print data :
-    for doc in docs :
-        st.write(doc, '\n')
+        tokens = word_tokenize( docs[i] ) # preprocessing : tokenization
+        stop_words = nltk.corpus.stopwords.words( 'english' ) # preprocessing : stop words
+        docs[i] = ' '.join( [token for token in tokens if token not in stop_words] ) # preprocessing : stop words removal
+        print( docs[i], '\n' )
+        
+        docs[i] = ' '.join( [stemmer.stem(token) for token in tokens] ) # preprocessing : stemming
+        print( docs[i], '\n' )
+        return docs
 
 if choose == "Home" :
     st.title( "Reconnaissance des mots arabes manuscrits pris de la base de données IFN/ENIT" )
 
 elif choose == "Dictionaries" :
-    read_data()
+    docs = read_data()
+    docs = clean_preprocess(docs)
