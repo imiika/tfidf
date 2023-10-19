@@ -73,7 +73,7 @@ def show_dicts1(dict):
 def show_dicts(dict):
     dict_df = pd.DataFrame.from_dict( dict, orient = 'index', columns = ['Frequency'] )
     dict_df.index.name = 'Word'
-    st.dataframe( data = dict_df, width = 10 )
+    st.dataframe( data = dict_df, width = 100 )
     #st.markdown( dict_df.style.hide( axis="index" ).to_html(), unsafe_allow_html = True )
 
 if choose == "Home" :
