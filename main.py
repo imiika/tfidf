@@ -113,6 +113,8 @@ elif choose == "Dictionary per document" :
         st.write( "## Text n", i+1 )
         st.write( "### Original text :" )
         st.write( docs[i] )
+        st.text( docs[i] )
+        st.markdown( docs[i] )
         
         st.write( "### Text after cleaning and preprocessing : lower case, stopwords and non-words removal, stemming :" )
         st.write( preprocessed_docs[i] )
