@@ -14,7 +14,7 @@ nltk.download('stopwords')
 nltk.download('words')
 
 with st.sidebar :
-    choose = option_menu("Menu", ["Home", "Dictionaries", "TF-IDF", "Contact", "Help"],
+    choose = option_menu("Menu", ["Home", "Dictionary per document", "TF-IDF", "Contact", "Help"],
                          icons=['house', 'table 2 columns', 'table', 'stars','person lines fill'],
                          menu_icon="menu-app",
                          styles={
@@ -103,9 +103,9 @@ def show_dict( dict ):
     st.markdown( dict_df.style.hide( axis="index" ).to_html(), unsafe_allow_html = True )
     
 if choose == "Home" :
-    st.title( "Reconnaissance des mots arabes manuscrits pris de la base de données IFN/ENIT" )
+    st.title( "Information Representation : Indexing & TF-IDF : Term Frequency–Inverse Document Frequency" )
 
-elif choose == "Dictionaries" :
+elif choose == "Dictionary per document" :
     docs = read_data()
     preprocessed_docs = clean_preprocess(docs)
 
@@ -137,3 +137,10 @@ elif choose == "TF-IDF" :
     st.write( "## Dictionary :" )
     show_dict( dict )
         
+elif choose == "Contact" :
+    st.write( "### We are always happy to hear from you!" )
+    st.write( "### Send us an email and tell us how we can help you via this email: tfidf@gmail.com" )
+    
+elif choose == "Help" :
+    st.write( "### - Dictionary : A Python data structure storing informations per index/value" )
+    st.write( "### - TF-IDF : Term Frequency–Inverse Document Frequency" )
