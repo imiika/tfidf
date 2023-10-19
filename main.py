@@ -64,18 +64,11 @@ def create_dicts(docs):
         dicts.append( dictionary )
     return dicts
 
-def show_dicts1(dict):
-    st.write()
-    #st.write( "{:<10} {:<10}".format( 'Word', 'Frequency') )
-
-    #for key, value in dict.items() :
-        #st.write( "{:<10} {:<10}".format( key, value ) )
-
 def show_dicts(dict):
-    dict_df = pd.DataFrame.from_dict( dict, orient = 'index', columns = ['Frequency'] )
-    #dict_df.index.name = 'Word'
-    #st.table( dict_df )
-    
+    words = [key for key, _ in dict.items()]
+    freq = [value for _, value in dict.items()]
+
+    dict_df = pd.DataFrame( {'Words':words, 'Frequencies':freq } )
     st.markdown( dict_df.style.hide( axis="index" ).to_html(), unsafe_allow_html = True )
 
 def create_dict(docs):
@@ -100,12 +93,6 @@ def create_dict(docs):
             dictionary[ (word, doc) ] += 1
 
     return dictionary    
-
-def show_dict1( dict ):
-    dict_df = pd.DataFrame.from_dict( dict, orient = 'index', columns = ['Document', 'Frequency'] )
-    dict_df.index.name = 'Word'
-    st.write( dict_df )
-    #st.table( dict_df )
 
 def show_dict( dict ):
     words = [key[0] for key, _ in dict.items()]
