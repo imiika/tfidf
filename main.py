@@ -1,5 +1,6 @@
 import streamlit as st
 import numpy as np
+import pandas as pd
 import os
 from streamlit_option_menu import option_menu
 import string # for removing punctuation
@@ -7,9 +8,9 @@ import nltk #natural language toolkit
 from nltk import word_tokenize, download, stem #preprocessing
 from nltk.corpus import stopwords, words #remove stopwords
 
-#nltk.download('punkt')
-#nltk.download('stopwords')
-#nltk.download('words')
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('words')
 
 with st.sidebar :
     choose = option_menu("Menu", ["Home", "Dictionaries", "TF-IDF", "Contact", "Help"],
@@ -62,12 +63,15 @@ def create_dicts(docs):
         dicts.append( dictionary )
     return dicts
 
-def show_dicts(dict):
-    st.table( data = dict )
+def show_dicts1(dict):
     #st.write( "{:<10} {:<10}".format( 'Word', 'Frequency') )
 
     #for key, value in dict.items() :
         #st.write( "{:<10} {:<10}".format( key, value ) )
+
+def show_dicts(dict):
+    dict_df = pd.DataFrame( dict, columns = [ 'Word', 'Frequency' ] )
+    st.dataframe( dict_df )
 
 if choose == "Home" :
     st.title( "Reconnaissance des mots arabes manuscrits pris de la base de données IFN/ENIT" )
