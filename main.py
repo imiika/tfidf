@@ -100,6 +100,11 @@ def create_dict(docs):
 
     return dictionary    
 
+def show_dict( dict ):
+    dict_df = pd.DataFrame.from_dict( dict, orient = 'index', columns = ['Document', 'Frequency'] )
+    dict_df.index.name = 'Word'
+    st.table( dict_df )
+    
 if choose == "Home" :
     st.title( "Reconnaissance des mots arabes manuscrits pris de la base de données IFN/ENIT" )
 
@@ -130,3 +135,7 @@ elif choose == "TF-IDF" :
     st.write( "## Preprocessed texts :" )
     for i in range( len(docs) ) :
         st.write( preprocessed_docs[i] )
+
+    dict = create_dict( preprocessed_docs )
+    st.write( "## Dictionary :" )
+    show_dict( dict )
