@@ -78,7 +78,7 @@ def create_dict(docs):
         words.append( tokens )
         distinct_words.extend( tokens )
     
-    distinct_words = list( set( distinct_words ) )
+    distinct_words = sorted( list( set( distinct_words ) ) )
 
     doc_names = []
     for i in range( len(docs) ) :
