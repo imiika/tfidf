@@ -60,3 +60,5 @@ elif choose == "Dictionaries" :
         st.write( "## Text after cleaning and preprocessing : lower case, stopwords and non-words removal, stemming :" )
         st.write( preprocessed_docs[i] )
         st.write()
+        st.write()
+        st.write()
