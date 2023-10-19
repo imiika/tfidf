@@ -72,7 +72,7 @@ def show_dicts1(dict):
 
 def show_dicts(dict):
     dict_df = pd.DataFrame( dict, index = [key for key, _ in dicts[0].items()], columns = [ 'Word', 'Frequency' ] )
-    st.dataframe( dict_df )
+    st.markdown( dict_df.style.hide( axis="index" ).to_html(), unsafe_allow_html = True )
 
 if choose == "Home" :
     st.title( "Reconnaissance des mots arabes manuscrits pris de la base de données IFN/ENIT" )
