@@ -139,4 +139,4 @@ elif choose == "TF-IDF" :
 
     dict = create_dict( preprocessed_docs )
     st.write( "## Dictionary :" )
-    show_dict( dict )
+    st.write( dict )
