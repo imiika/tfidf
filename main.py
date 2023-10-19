@@ -40,7 +40,8 @@ def clean_preprocess(docs):
         tokens = word_tokenize( docs[i] ) # preprocessing : tokenization
         stop_words = nltk.corpus.stopwords.words( 'english' ) # preprocessing : stop words
         docs[i] = ' '.join( [token for token in tokens if token not in stop_words] ) # preprocessing : stop words removal
-        
+
+        tokens = word_tokenize( docs[i] ) # preprocessing : tokenization
         docs[i] = ' '.join( [stemmer.stem(token) for token in tokens] ) # preprocessing : stemming
         return docs
 
