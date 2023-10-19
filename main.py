@@ -48,6 +48,29 @@ def clean_preprocess(docs):
         preprocessed_docs.append( doc )
     return preprocessed_docs
 
+def create_dicts(docs):
+    dicts = []
+    for i in range( len(docs) ) :
+        words = list( docs[i].split(" ") )
+        dictionary = {}
+        for token in words :
+            if token in dictionary.keys():
+                dictionary[token] += 1
+            else:
+                dictionary[token] = 1
+        
+        dicts.append( dictionary )
+    return dicts
+
+def show_dicts(dicts):
+    for i in range( len(dicts) ) :
+        print( "Dictionary of document", i+1, ":\n" )
+        print( "{:<10} {:<10}".format( 'Word', 'Frequency') )
+    
+        for key, value in dicts[i].items() :
+            print( "{:<10} {:<10}".format( key, value ) )
+        print( "\n" )
+
 if choose == "Home" :
     st.title( "Reconnaissance des mots arabes manuscrits pris de la base de données IFN/ENIT" )
 
