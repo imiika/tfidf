@@ -1,0 +1,4 @@
+Chapter 1, Introduction to Natural Language Processing, starts by defining natural 
+language processing and the different types of natural language processing tasks,
+using practical examples for each type. This chapter also covers the process of
+structuring and implementing a natural language processing project.
