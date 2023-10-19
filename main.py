@@ -104,7 +104,8 @@ def create_dict(docs):
 def show_dict( dict ):
     dict_df = pd.DataFrame.from_dict( dict, orient = 'index', columns = ['Document', 'Frequency'] )
     dict_df.index.name = 'Word'
-    st.table( dict_df )
+    st.write( dict_df )
+    #st.table( dict_df )
     
 if choose == "Home" :
     st.title( "Reconnaissance des mots arabes manuscrits pris de la base de données IFN/ENIT" )
