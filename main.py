@@ -84,7 +84,6 @@ elif choose == "Dictionaries" :
         st.write( preprocessed_docs[i] )
 
         dicts = create_dicts( preprocessed_docs )
+        st.write( "# Dictionary :" )
         show_dicts( dicts[i] )
-        st.write()
-        st.write()
-        st.write()
+        
