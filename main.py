@@ -64,6 +64,7 @@ def create_dicts(docs):
     return dicts
 
 def show_dicts1(dict):
+    st.write()
     #st.write( "{:<10} {:<10}".format( 'Word', 'Frequency') )
 
     #for key, value in dict.items() :
