@@ -1,2 +1,0 @@
-Chapter 3, Developing a Text Classifier, teaches you how to create a simple text
-classifier with feature extraction methods covered in the previous chapters.
