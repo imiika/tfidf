@@ -32,7 +32,7 @@ def read_data():
         
     # Print data :
     for doc in docs :
-        write(doc, '\n')
+        st.write(doc, '\n')
 
 if choose == "Home" :
     st.title( "Reconnaissance des mots arabes manuscrits pris de la base de données IFN/ENIT" )
