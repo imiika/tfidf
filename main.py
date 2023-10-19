@@ -113,7 +113,7 @@ elif choose == "Dictionary per document" :
         st.write( "### ● Original text :" )
         st.write( "#####", docs[i] )
         
-        st.write( "### ● Text after cleaning and preprocessing : lower case, stopwords and non-words removal, stemming :" )
+        st.write( "### ◦ Text after cleaning and preprocessing : lower case, stopwords and non-words removal, stemming :" )
         st.write( "#####", preprocessed_docs[i] )
 
         dicts = create_dicts( preprocessed_docs )
@@ -124,11 +124,11 @@ elif choose == "TF-IDF" :
     docs = read_data()
     preprocessed_docs = clean_preprocess(docs)
     
-    st.write( "## ● Original texts :" )
+    st.write( "## ⚬ Original texts :" )
     for i in range( len(docs) ) :
         st.write( docs[i] )
 
-    st.write( "## ● Preprocessed texts :" )
+    st.write( "## ⚬ Preprocessed texts :" )
     for i in range( len(docs) ) :
         st.write( preprocessed_docs[i] )
 
