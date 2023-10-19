@@ -63,6 +63,7 @@ def create_dicts(docs):
     return dicts
 
 def show_dicts(dict):
+    st.write( type(dict) )
     st.table(data=dict)
     #st.write( "{:<10} {:<10}".format( 'Word', 'Frequency') )
 
