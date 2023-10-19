@@ -50,10 +50,8 @@ if choose == "Home" :
 
 elif choose == "Dictionaries" :
     docs = read_data()
-    for d in docs :
-        st.write( d )
+    st.write(docs[0])
         
     docs = clean_preprocess(docs)
     st.write('then')
-    for d in docs :
-        st.write( d )
+    st.write(docs[0])
