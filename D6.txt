@@ -1,2 +1,0 @@
-Chapter 6, Vector Representation, discusses the importance of representing text as
-vectors, and various vector representations, such as Word2Vec and Doc2Vec.
