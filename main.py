@@ -28,10 +28,12 @@ with st.sidebar :
 def read_data():
     doc_names = os.listdir( 'Documents/' )
     doc_names.reverse()
+    st.write( doc_names )
     docs = []
     for doc in doc_names :
         with open( 'Documents/'+doc, 'r' ) as file :
             docs.append( ' '.join( file.read().split() ) )
+    st.write( docs[1] )
     return docs
 
 def clean_preprocess(docs):
