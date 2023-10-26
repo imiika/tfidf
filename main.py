@@ -33,22 +33,27 @@ def read_data():
             docs.append( ' '.join( file.read().split() ) )
     return docs
 
-def clean_preprocess(docs):
-    stemmer = stem.PorterStemmer()
-    preprocessed_docs = []
-    for i in range( len(docs) ) :
-        doc = docs[i].lower() # cleaning : lower case
+def clean_preprocess( docs, tokenization_method, stemmer ) :
+    new_docs = docs.copy()
+    if( stemmer == 'porter' ) :
+        stemmer = stem.PorterStemmer()
+    elif( stemmer == 'lancaster' ) :
+        stemmer = stem.LancasterStemmer()
         
-        ExpReg = RegexpTokenizer('(?:[A-Z]\.)+|\d+(?:\.\d+)?DA?|\w+|\.{3}') 
-        tokens = ExpReg.tokenize( docs[i] ) # preprocessing : tokenization
+    for i in range( len(new_docs) ) :
+        new_docs[i] = new_docs[i].lower() # cleaning : lower case
         
-        stop_words = nltk.corpus.stopwords.words( 'english' ) # preprocessing : stop words
-        doc = ' '.join( [token for token in tokens if token not in stop_words] ) # preprocessing : stop words removal
+        if( tokenization_method == 'tokenize' ) :
+            ExpReg = RegexpTokenizer('(?:[A-Z]\.)+|\d+(?:\.\d+)?DA?|\w+|\.{3}') 
+            tokens = ExpReg.tokenize( new_docs[i] ) # preprocessing : tokenization
+        elif( tokenization_method == 'split' ) :
+            tokens = new_docs[i].split()
 
-        tokens = ExpReg.tokenize( docs[i] ) # preprocessing : tokenization
-        doc = ' '.join( [stemmer.stem(token) for token in tokens] ) # preprocessing : stemming
-        preprocessed_docs.append( doc )
-    return preprocessed_docs
+        stop_words = nltk.corpus.stopwords.words( 'english' ) # preprocessing : stop words
+        tokens = [token for token in tokens if token not in stop_words]# preprocessing : stop words removal
+            
+        new_docs[i] = ' '.join( [stemmer.stem(token) for token in tokens] ) # preprocessing : stemming
+    return new_docs
 
 def create_dicts(docs):
     dicts = []
@@ -106,27 +111,35 @@ if choose == "Home" :
     st.title( "Information Representation : Indexing & TF-IDF : Term Frequency–Inverse Document Frequency" )
 
 elif choose == "Dictionary per document" :
+    docs = read_data()
     option = st.selectbox( "Choose the term extraction method : ", ('-', 'split()', 'nltk.RegexpTokenizer.tokenize()') )
     
     option1 = st.selectbox( "Choose the stemmer : ", ('-', 'Porter stemmer', 'Lancaster stemmer') )
     st.write("")
     st.write("")
     st.write("")
+
+    if( option == 'split()' and option1 == 'Porter stemmer' ) :
+        preprocessed_docs = clean_preprocess(docs, 'split', 'porter')
+    if( option == 'split()' and option1 == 'Lancaster stemmer' ) :
+        preprocessed_docs = clean_preprocess(docs, 'split', 'lancaster')
+    if( option == 'nltk.RegexpTokenizer.tokenize()' and option1 == 'Porter stemmer' ) :
+        preprocessed_docs = clean_preprocess(docs, 'tokenize', 'porter')
+    if( option == 'nltk.RegexpTokenizer.tokenize()' and option1 == 'Lancaster stemmer' ) :
+        preprocessed_docs = clean_preprocess(docs, 'tokenize', 'lancaster')
     
-    docs = read_data()
-    preprocessed_docs = clean_preprocess(docs)
-
-    for i in range( len(docs) ) :
-        st.write( "## Text n", i+1 )
-        st.write( "### - Original text :" )
-        st.write( "#####", docs[i] )
-        
-        st.write( "### - Text after cleaning and preprocessing : lower case, stopwords and non-words removal, stemming :" )
-        st.write( "#####", preprocessed_docs[i] )
-
-        dicts = create_dicts( preprocessed_docs )
-        st.write( "### Dictionary :" )
-        show_dicts( dicts[i] )        
+    if( option != '-' and option1 != '-' ) :
+        for i in range( len(docs) ) :
+            st.write( "## Text n", i+1 )
+            st.write( "### - Original text :" )
+            st.write( "#####", docs[i] )
+            
+            st.write( "### - Text after cleaning and preprocessing : lower case, stopwords and non-words removal, stemming :" )
+            st.write( "#####", preprocessed_docs[i] )
+    
+            dicts = create_dicts( preprocessed_docs )
+            st.write( "### Dictionary :" )
+            show_dicts( dicts[i] )        
 
 elif choose == "TF-IDF" :
     docs = read_data()
