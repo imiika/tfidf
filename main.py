@@ -146,7 +146,22 @@ elif choose == "Dictionary per document" :
 elif choose == "TF-IDF" :
     st.title( "TF-IDF" )
     docs = read_data()
-    preprocessed_docs = clean_preprocess(docs)
+    
+    option = st.selectbox( "Choose the term extraction method : ", ('-', 'split()', 'nltk.RegexpTokenizer.tokenize()') )
+    
+    option1 = st.selectbox( "Choose the stemmer : ", ('-', 'Porter stemmer', 'Lancaster stemmer') )
+    st.write("")
+    st.write("")
+    st.write("")
+
+    if( option == 'split()' and option1 == 'Porter stemmer' ) :
+        preprocessed_docs = clean_preprocess(docs, 'split', 'porter')
+    if( option == 'split()' and option1 == 'Lancaster stemmer' ) :
+        preprocessed_docs = clean_preprocess(docs, 'split', 'lancaster')
+    if( option == 'nltk.RegexpTokenizer.tokenize()' and option1 == 'Porter stemmer' ) :
+        preprocessed_docs = clean_preprocess(docs, 'tokenize', 'porter')
+    if( option == 'nltk.RegexpTokenizer.tokenize()' and option1 == 'Lancaster stemmer' ) :
+        preprocessed_docs = clean_preprocess(docs, 'tokenize', 'lancaster')
     
     st.write( "## ⚬ Original texts :" )
     for i in range( len(docs) ) :
