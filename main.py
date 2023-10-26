@@ -14,8 +14,8 @@ nltk.download('stopwords')
 nltk.download('words')
 
 with st.sidebar :
-    choose = option_menu("Menu", ["Home", "Dictionary per document", "TF-IDF", "Contact", "Help"],
-                         icons=['house', 'table 2 columns', 'table', 'stars','person lines fill'],
+    choose = option_menu("Menu", ["Home", "Dictionary per document", "Descriptors", "TF-IDF", "Contact", "Help"],
+                         icons=['house', 'table 2 columns', 'table', 'description outline', 'stars','person lines fill'],
                          menu_icon="menu-app",
                          styles={
         "container": {"padding": "5!important", "background-color": "#fafafa"},
