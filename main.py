@@ -173,7 +173,7 @@ elif choose == "Descriptors & Inverse Documents" :
             st.text( line )
         st.write( "## ⚬ Inverse document :" )
         for line in inv :
-            st.write( line )
+            st.text( line )
     
 elif choose == "TF-IDF" :
     st.title( "TF-IDF" )
