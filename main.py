@@ -162,18 +162,19 @@ elif choose == "TF-IDF" :
         preprocessed_docs = clean_preprocess(docs, 'tokenize', 'porter')
     if( option == 'nltk.RegexpTokenizer.tokenize()' and option1 == 'Lancaster stemmer' ) :
         preprocessed_docs = clean_preprocess(docs, 'tokenize', 'lancaster')
+
+    if( option != '-' and option1 != '-' ) :
+        st.write( "## ⚬ Original texts :" )
+        for i in range( len(docs) ) :
+            st.write( docs[i] )
     
-    st.write( "## ⚬ Original texts :" )
-    for i in range( len(docs) ) :
-        st.write( docs[i] )
-
-    st.write( "## ⚬ Preprocessed texts :" )
-    for i in range( len(docs) ) :
-        st.write( preprocessed_docs[i] )
-
-    dict = create_dict( preprocessed_docs )
-    st.write( "## Dictionary :" )
-    show_dict( dict )
+        st.write( "## ⚬ Preprocessed texts :" )
+        for i in range( len(docs) ) :
+            st.write( preprocessed_docs[i] )
+    
+        dict = create_dict( preprocessed_docs )
+        st.write( "## Dictionary :" )
+        show_dict( dict )
         
 elif choose == "Contact" :
     st.write( "### We are always happy to hear from you!" )
