@@ -136,7 +136,7 @@ elif choose == "Dictionary per document" :
             st.write( "### - Original text :" )
             st.write( "#####", docs[i] )
             
-            st.write( "### - Text after cleaning and preprocessing : lower case, stopwords and non-words removal, ", option1[0], " stemming :" )
+            st.write( "### - Text after cleaning and preprocessing : lower case, stopwords and non-words removal, ", option1.split(" ")[0], " stemming :" )
             st.write( "#####", preprocessed_docs[i] )
     
             dicts = create_dicts( preprocessed_docs )
