@@ -152,20 +152,20 @@ elif choose == "Descriptors & Inverse Documents" :
     st.write("")   
     
     if( option == 'split()' and option1 == 'Porter stemmer' ) :
-        desc = open( "descriptor_split_porter.txt", 'r' )
-        inv = open( "tfidf_split_porter.txt", 'r' )
+        desc = open( "Files/descriptor_split_porter.txt", 'r' )
+        inv = open( "Files/tfidf_split_porter.txt", 'r' )
         
     if( option == 'split()' and option1 == 'Lancaster stemmer' ) :
-        desc = open( "descriptor_split_porter.txt", 'r' )
-        inv = open( "tfidf_split_lancaster.txt", 'r' )
+        desc = open( "Files/descriptor_split_porter.txt", 'r' )
+        inv = open( "Files/tfidf_split_lancaster.txt", 'r' )
         
     if( option == 'nltk.RegexpTokenizer.tokenize()' and option1 == 'Porter stemmer' ) :
-        desc = open( "descriptor_split_porter.txt", 'r' )
-        inv = open( "tfidf_tokenize_porter.txt", 'r' )
+        desc = open( "Files/descriptor_split_porter.txt", 'r' )
+        inv = open( "Files/tfidf_tokenize_porter.txt", 'r' )
         
     if( option == 'nltk.RegexpTokenizer.tokenize()' and option1 == 'Lancaster stemmer' ) :
-        desc = open( "descriptor_tokenize_lancaster.txt", 'r' )
-        inv = open( "tfidf_split_porter.txt", 'r' )
+        desc = open( "Files/descriptor_tokenize_lancaster.txt", 'r' )
+        inv = open( "Files/tfidf_split_porter.txt", 'r' )
 
     if( option != '-' and option1 != '-' ) :
         st.write( "## ⚬ Descriptor :" )
