@@ -170,7 +170,9 @@ elif choose == "Descriptors & Inverse Documents" :
     if( option != '-' and option1 != '-' ) :
         st.write( "## ⚬ Descriptor :" )
         for line in desc :
-            st.write( line )
+            words = line.split( " " )
+            for word in words : 
+                st.write( word, "    " )
         st.write( "## ⚬ Inverse document :" )
         for line in inv :
             st.write( line )
