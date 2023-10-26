@@ -14,8 +14,8 @@ nltk.download('stopwords')
 nltk.download('words')
 
 with st.sidebar :
-    choose = option_menu("Menu", ["Home", "Dictionary per document", "Descriptors", "TF-IDF", "Contact", "Help"],
-                         icons=['house', 'table 2 columns', 'search', 'file-earmark-binary', 'stars','person lines fill'],
+    choose = option_menu("Menu", ["Home", "Dictionary per document", "Descriptors & Inverse Documents", "TF-IDF", "Contact", "Help"],
+                         icons=['house', 'table 2 columns', 'file-earmark-binary', 'search', 'stars','person lines fill'],
                          menu_icon="menu-app",
                          styles={
         "container": {"padding": "5!important", "background-color": "#fafafa"},
@@ -143,6 +143,38 @@ elif choose == "Dictionary per document" :
             st.write( "### Dictionary :" )
             show_dicts( dicts[i] )        
 
+elif choose == "Descriptors & Inverse Documents" :
+    st.title( "Descriptors & Inverse Documents" )
+    option = st.selectbox( "Choose the term extraction method : ", ('-', 'split()', 'nltk.RegexpTokenizer.tokenize()') 
+    option1 = st.selectbox( "Choose the stemmer : ", ('-', 'Porter stemmer', 'Lancaster stemmer') )
+    st.write("")
+    st.write("")
+    st.write("")   
+    
+    if( option == 'split()' and option1 == 'Porter stemmer' ) :
+        desc = open( "descriptor_split_porter.txt", 'r' )
+        inv = open( "tfidf_split_porter.txt", 'r' )
+        
+    if( option == 'split()' and option1 == 'Lancaster stemmer' ) :
+        desc = open( "descriptor_split_porter.txt", 'r' )
+        inv = open( "tfidf_split_lancaster.txt", 'r' )
+        
+    if( option == 'nltk.RegexpTokenizer.tokenize()' and option1 == 'Porter stemmer' ) :
+        desc = open( "descriptor_split_porter.txt", 'r' )
+        inv = open( "tfidf_tokenize_porter.txt", 'r' )
+        
+    if( option == 'nltk.RegexpTokenizer.tokenize()' and option1 == 'Lancaster stemmer' ) :
+        desc = open( "descriptor_tokenize_lancaster.txt", 'r' )
+        inv = open( "tfidf_split_porter.txt", 'r' )
+
+    if( option != '-' and option1 != '-' ) :
+        st.write( "## ⚬ Descriptor :" )
+        for line in desc :
+            st.write( line )
+        st.write( "## ⚬ Inverse document :" )
+        for line in inv :
+            st.write( line )
+    
 elif choose == "TF-IDF" :
     st.title( "TF-IDF" )
     docs = read_data()
