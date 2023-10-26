@@ -145,7 +145,7 @@ elif choose == "Dictionary per document" :
 
 elif choose == "Descriptors & Inverse Documents" :
     st.title( "Descriptors & Inverse Documents" )
-    option = st.selectbox( "Choose the term extraction method : ", ('-', 'split()', 'nltk.RegexpTokenizer.tokenize()') 
+    option = st.selectbox( "Choose the term extraction method : ", ('-', 'split()', 'nltk.RegexpTokenizer.tokenize()') )
     option1 = st.selectbox( "Choose the stemmer : ", ('-', 'Porter stemmer', 'Lancaster stemmer') )
     st.write("")
     st.write("")
