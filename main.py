@@ -111,6 +111,8 @@ if choose == "Home" :
     st.title( "Information Representation : Indexing & TF-IDF : Term Frequency–Inverse Document Frequency" )
 
 elif choose == "Dictionary per document" :
+    st.title( "Dictionary per document" )
+    
     docs = read_data()
     option = st.selectbox( "Choose the term extraction method : ", ('-', 'split()', 'nltk.RegexpTokenizer.tokenize()') )
     
@@ -142,6 +144,7 @@ elif choose == "Dictionary per document" :
             show_dicts( dicts[i] )        
 
 elif choose == "TF-IDF" :
+    st.title( "TF-IDF" )
     docs = read_data()
     preprocessed_docs = clean_preprocess(docs)
     
