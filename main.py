@@ -9,9 +9,9 @@ from nltk import word_tokenize, download, stem, RegexpTokenizer #preprocessing
 from nltk.corpus import stopwords, words #remove stopwords
 import itertools
 
-nltk.download('punkt')
-nltk.download('stopwords')
-nltk.download('words')
+#nltk.download('punkt')
+#nltk.download('stopwords')
+#nltk.download('words')
 
 with st.sidebar :
     choose = option_menu("Menu", ["Home", "Descriptors", "Inverse Documents", "Dictionary per document", "TF-IDF", "Contact", "Help"],
