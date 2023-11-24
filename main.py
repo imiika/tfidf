@@ -7,11 +7,11 @@ import string # for removing punctuation
 import nltk #natural language toolkit
 from nltk import word_tokenize, download, stem, RegexpTokenizer #preprocessing
 from nltk.corpus import stopwords, words #remove stopwords
-import itertools
+import itertools, math
 
-#nltk.download('punkt')
-#nltk.download('stopwords')
-#nltk.download('words')
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('words')
 
 with st.sidebar :
     choose = option_menu("Menu", ["Home", "Descriptors", "Inverse Documents", "Dictionary per document", "TF-IDF", "Contact", "Help"],
@@ -124,15 +124,36 @@ def matching( tfidf, tokens, tokenization_method, stemmer, matching_method ) :
     for line in tfidf :
         items = line.split()
         if( items[0] in tokens ) :
-            answers.append( (items[1], items[3]) )
-    
+            answers.append( (items[1], float(items[3])) )
+    if len(answers) == 0 :
+        return answers
+        
     documents = list( set( list(zip(*answers))[0] ) )
-    matching = []
-    if( matching_method == 'scalar product' ) :
-        for document in documents :
-            matching.append( round(np.sum( [answers[i][1] for i in range(len(answers)) if answers[i][0]==document] ), 4) )
+    sum_ = []
+    for document in documents :
+        sum_.append( round(np.sum( [answers[i][1] for i in range(len(answers)) if answers[i][0]==document] ), 4) )
     
-    return sorted(list(zip(documents, matching)), key=lambda x: x[1], reverse = True)
+    if( matching_method == 'scalar product' ) :    
+        answers = sorted(list(zip(documents, sum_)), key=lambda x: x[1], reverse = True)
+        return ["{:<10} {:<10}".format( answers[i][0], answers[i][1] ) for i in range(len(answers)) ]
+    
+    elif matching_method == 'cosine measure' :
+        cosine_measure = []
+        for i in range(len(sum_)) :
+            sum_v = len( [answers[j][0] for j in range(len(answers)) if answers[j][0]==documents[i]] )
+            sum_w = np.sum( [(answers[j][1])**2 for j in range(len(answers)) if answers[j][0]==documents[i]] )
+            cosine_measure.append( round(sum_[i] / ( math.sqrt(sum_v) * math.sqrt(sum_w) ), 4) )
+        answers = sorted(list(zip(documents, cosine_measure)), key=lambda x: x[1], reverse = True)
+        return ["{:<10} {:<10}".format( answers[i][0], answers[i][1] ) for i in range(len(answers)) ]
+    
+    elif matching_method == 'jaccard measure' :
+        jaccard_measure = []
+        for i in range(len(sum_)) :
+            sum_v = len( [answers[j][1] for j in range(len(answers)) if answers[j][0]==documents[i]] )
+            sum_w = np.sum( [(answers[j][1])**2 for j in range(len(answers)) if answers[j][0]==documents[i]] )
+            jaccard_measure.append( round(sum_[i] / ( sum_v + sum_w - sum_[i] ), 4) )
+        answers = sorted(list(zip(documents, jaccard_measure)), key=lambda x: x[1], reverse = True)
+        return ["{:<10} {:<10}".format( answers[i][0], answers[i][1] ) for i in range(len(answers)) ]
 
 if choose == "Home" :
     st.title( "Information Representation : Indexing & TF-IDF : Term Frequency–Inverse Document Frequency" )
@@ -199,10 +220,7 @@ elif choose == "Inverse Documents" :
     st.title( "Inverse Documents" )
     option = st.selectbox( "Choose the term extraction method : ", ('-', 'split()', 'nltk.RegexpTokenizer.tokenize()') )
     option1 = st.selectbox( "Choose the stemmer : ", ('-', 'Porter stemmer', 'Lancaster stemmer') )
-    option2 = st.selectbox( "Do you want to find informations about : ", ('-', 'All dataset', 'Specific query', 'Matching for specific query') )
-    st.write("")
-    st.write("")
-    st.write("")   
+    option2 = st.selectbox( "Choose what do you want to search about : ", ('-', 'Informations about a specific query', 'Matching for a specific query') )
     
     if( option == 'split()' and option1 == 'Porter stemmer' ) :
         inv = open( "Files/tfidf_split_porter.txt", 'r' )
@@ -215,20 +233,25 @@ elif choose == "Inverse Documents" :
         
     if( option == 'nltk.RegexpTokenizer.tokenize()' and option1 == 'Lancaster stemmer' ) :
         inv = open( "Files/tfidf_split_porter.txt", 'r' )
+            
+    if( option2 == 'Matching for a specific query' ) :
+        option3 = st.selectbox( "Choose the matching model : ", ('-', 'Vector space model', 'Probabilistic model (BM25)') )
     
-    if( option2 == 'Specific query' or option2 == 'Matching for specific query' ) :
+        if( option3 == 'Vector space model' ) :
+            option4 = st.selectbox( "Choose matching measure : ", ('-', 'scalar product', 'cosine measure', 'jaccard measure') )
+    st.write("")
+    st.write("")
+    st.write("")   
+    
+    if( option2 == 'Informations about a specific query' or ( option2 == 'Matching for a specific query' and option3 == 'Probabilistic model (BM25)') or (option2 == 'Matching for a specific query' and option3 == 'Vector space model' and option4 != '-') ) :
         col1, col2 = st.columns(2)
         with col1 :
-            tokens = st.text_input( "Query" )
+            tokens = st.text_input( "Query 👇" )
         with col2 :
             button_search = st.button( 'search', key='search' )
         
     if( option != '-' and option1 != '-' and option2 != '-' ) :
-        if( option2 == 'All dataset' ) :
-            st.write( "## ⚬ Inverse document :" )
-            for line in inv :
-                st.text( line )
-        elif( option2 == 'Specific query' ) :
+        if( option2 == 'Informations about a specific query' ) :
             if( button_search ) :
                 tokens = [ token for token in tokens.split() ]
                 st.write( "## ⚬ Query's result :" )
@@ -238,15 +261,15 @@ elif choose == "Inverse Documents" :
                 else :
                     for line in results :
                         st.text( line )
-                        
-        elif( option2 == 'Matching for specific query' ) :
+        elif( option2=='Matching for a specific query' and option3=='Vector space model' and option4 != '-' ) :
             if( button_search ) :
                 tokens = [ token for token in tokens.split() ]
                 st.write( "## ⚬ Query's result :" )
-                results = matching( inv, tokens, option, option1, 'scalar product' )
+                results = matching( inv, tokens, option, option1, option4 )
                 if not results :
                     st.write( "No results found for this (these) word(s)." )
                 else :
+                    st.write( "{:<10} {:<10}".format( 'Document', 'Relevance' ) )
                     for line in results :
                         st.text( line )
         
