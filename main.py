@@ -534,10 +534,10 @@ elif choose == "Evaluation" :
             option4 = st.selectbox( "Choose matching measure : ", ('-', 'scalar product', 'cosine measure', 'jaccard measure') )
             
         elif( option3 == 'Probabilistic model (BM25)' ) :
-            col3, col4 = st.columns(2)
-            with col3 :
+            col33, col44 = st.columns(2)
+            with col33 :
                 option5 = st.text_input( "Enter K : " )
-            with col4 :
+            with col44 :
                 option6 = st.text_input( "Enter B : " )
                 
     st.write("")
