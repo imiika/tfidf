@@ -596,7 +596,7 @@ elif choose == "Evaluation" :
                     st.write( '#### Interpolated curve recall/precision' )
                     df = pd.DataFrame( inter_curve, columns=['Recall', 'Precision'] )
                     df.set_index( 'Recall', inplace=True )
-                    st.line_chart( df, x=None, y='Precision', color = '#228B22' )
+                    st.line_chart( df, color = '#228B22' )
                 
         elif( option3=='Probabilistic model (BM25)' and len(option5)>0 and len(option6)>0 ) :
             if( button_search ) :
@@ -630,7 +630,7 @@ elif choose == "Evaluation" :
                     st.write( '#### Interpolated curve recall/precision' )
                     df = pd.DataFrame( inter_curve, columns=['Recall', 'Precision'] )
                     df.set_index( 'Recall', inplace=True )
-                    st.line_chart( df, y='Precision', color = '#228B22' )
+                    st.line_chart( df, color = '#228B22' )
                     
         elif( option3=='Boolean model' ) :
             if( button_search ) :
